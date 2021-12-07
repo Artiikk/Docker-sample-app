@@ -1,0 +1,20 @@
+{
+  "name": "docker-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "docker-image": "docker build -t logsapp:volumes .",
+    "docker-run": "docker run -p 3000:3000 -v logs:/app/data --env-file ./.env --rm --name logsContainer logsapp:volumes",
+    "docker-run-dev": "docker run -p 3000:3000 -v /Users/Art/Web/Projects/docker-app/:/app -v /app/node_modules -v logs:/app/data --env-file ./.env --rm --name logsContainer logsapp:volumes",
+    "docker-build": "yarn docker-image && yarn docker-run",
+    "docker-stop": "docker stop myApp"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.2",
+    "nodemon": "^2.0.15"
+  }
+}
